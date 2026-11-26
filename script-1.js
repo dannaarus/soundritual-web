@@ -1,0 +1,4 @@
+(function(){const key='sound-ritual-language';let lang='es';try{const params=new URLSearchParams(location.search);lang=(params.get('lang')||localStorage.getItem(key))==='en'?'en':'es'}catch(e){}
+function setLanguage(next){lang=next;document.documentElement.lang=lang;document.querySelectorAll('[data-es][data-en]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang)});document.querySelectorAll('[data-aria-es][data-aria-en]').forEach(el=>el.setAttribute('aria-label',el.getAttribute('data-aria-'+lang)));document.querySelectorAll('.language button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));document.title=(document.querySelector('h1 [data-'+lang+']')?.textContent||'Sound Ritual')+' — Sound Ritual';try{localStorage.setItem(key,lang)}catch(e){}}
+document.querySelectorAll('.language button').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));setLanguage(lang);
+})();
